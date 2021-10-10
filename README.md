@@ -5,7 +5,7 @@ information is useful for evaluating both security events and troubleshooting
 network security issues.
 
 
-### System Architecture and Directory Structure
+## System Architecture and Directory Structure
 For detailed technical specification have a look at the
 [/spec](https://gitlab.com/phxnet/monitor/tree/master/spec) directory.
 
@@ -20,7 +20,7 @@ For detailed technical specification have a look at the
 ├── .gitignore
 ```
 
-### Build & Run
+## Build & Run
 Every component must be built and run separately (we recommend to use docker
 containers).<br/>
 To build and run the agent, see:
@@ -35,3 +35,8 @@ To build and setup the frontend (web interface), see:
 Contributions are welcome and can be made by submitting GitHub pull requests to this repository. In general,
 the source code follows [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 and and [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html).
+
+
+## License
+This source code is available to everyone under the standard
+[MIT LICENSE](https://github.com/irtlab/netmon/blob/master/LICENSE).
