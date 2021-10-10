@@ -1,0 +1,25 @@
+{
+  "apps": [
+     {
+      "name": "ExpressJS",
+      "script": "bin/www",
+      "env_production": {
+        "NODE_ENV": "production"
+      }
+    }, {
+        "name": "ExpressJS Socket",
+        "script": "websocket_servers/expressjs/expressjs_socket.js",
+        "env_production": {
+          "NODE_ENV": "production"
+        }
+       },
+    {
+     "name": "Websocket Server",
+     "script": "websocket_servers/agent_socket/socket_server.js",
+     "args": ["-n", ""],
+     "env_production" : {
+       "NODE_ENV": "production"
+     }
+    }
+  ]
+}

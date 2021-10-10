@@ -1,0 +1,120 @@
+#!/usr/bin/env node
+
+process.env.UV_THREADPOOL_SIZE = 128;
+
+/**
+ * Module dependencies.
+ */
+const debug = require('debug')('pnode-server:server');
+const http = require('http');
+const assert = require('assert');
+const stdio = require('stdio');
+const app = require('../app');
+const ConnectToMongoDB = require('../db/mongodb_connect');
+const constants = require('../common/constants');
+
+
+const opts = stdio.getopt({
+  port: {
+    key: 'p', args: 1, description: 'Port number to listen on', default: process.env.PORT || '3000'
+  },
+  host: {
+    key: 'h', args: 1, description: 'Override MongoDB hostname for TLS certificate validation', default: ''
+  },
+  db: {
+    key: 'd', args: 1, description: 'MongoDB database URL', default: process.env['MONGODB_URL'] || constants.default_db_url
+  },
+});
+
+
+/**
+ * Establish connection with MongoDB database and store it in an app object.
+ * In order to use it you should call request.app.get('mongo_db') methhod.
+ */
+console.log('Connecting to MongoDB %s', opts.db);
+ConnectToMongoDB(opts.db, (error, db) => {
+  assert.equal(null, error);
+  app.app.set('mongo_db', db);
+}, opts.host);
+
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+function normalizePort(val) {
+  const port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0 && port <= Number(65535)) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+
+/**
+ * Create HTTP server.
+ */
+const server = http.createServer(app.app);
+
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+function onListening() {
+  const addr = server.address();
+  const bind = typeof addr === 'string' ?
+    'pipe ' + addr :
+    'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
+
+
+/**
+ * Get port from environment and store in Express.
+ */
+const port = normalizePort(opts.port);
+app.app.set('port', port);
+
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  const bind = typeof port === 'string' ?
+    'Pipe ' + port :
+    'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+

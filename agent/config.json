@@ -1,0 +1,4 @@
+{
+  "db_file_path": "/var/local/agent_sqlite3.db",
+  "server_url": "wss://monitor.phxnet.org/agent"
+}

@@ -1,0 +1,30 @@
+{
+  "name": "backend",
+  "version": "2.2.0",
+  "private": true,
+  "author": "Columbia University, the Internet Real-Time Lab (IRT Lab)",
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "DEBUG=netmon:* node ./bin/www"
+  },
+  "dependencies": {
+    "assert": "^1.4.1",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "^4.17.1",
+    "http-errors": "~1.6.2",
+    "moment": "^2.22.2",
+    "mongodb": "^3.4.1",
+    "morgan": "~1.9.0",
+    "pug": "^2.0.3",
+    "socket.io": "^2.1.1",
+    "stdio": "^0.2.7",
+    "ws": "^6.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.19.1"
+  }
+}
