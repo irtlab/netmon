@@ -7,7 +7,7 @@ network security issues.
 
 ## System Architecture and Directory Structure
 For detailed technical specification have a look at the
-[/spec](https://gitlab.com/phxnet/monitor/tree/master/spec) directory.
+[/spec](https://github.com/irtlab/netmon/tree/master/spec) directory.
 
 
 ##### Directory Structure
@@ -24,11 +24,11 @@ For detailed technical specification have a look at the
 Every component must be built and run separately (we recommend to use docker
 containers).<br/>
 To build and run the agent, see:
-[agent/README.md](https://gitlab.com/phxnet/monitor/blob/master/agent/README.md).<br/>
+[agent/README.md](https://github.com/irtlab/netmon/blob/master/agent/README.md).<br/>
 To build and run the backend server and websocket server, see:
-[backend/README.md](https://gitlab.com/phxnet/monitor/blob/master/backend/README.md)<br/>
+[backend/README.md](https://github.com/irtlab/netmon/blob/master/backend/README.md)<br/>
 To build and setup the frontend (web interface), see:
-[frontend/README.md](https://gitlab.com/phxnet/monitor/blob/master/frontend/README.md)<br/>
+[frontend/README.md](https://github.com/irtlab/netmon/blob/master/frontend/README.md)<br/>
 
 
 ## Contributions
